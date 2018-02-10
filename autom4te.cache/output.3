@@ -4348,7 +4348,27 @@ fi
 
 #AC_CONFIG_FILES([src/ipcs/core/Makefile
 #                 src/lib/Makefile])
-ac_config_files="$ac_config_files Makefile src/ipcs/core/Makefile src/lib/Makefile"
+case "$host_os" in
+*aix*)		CFLAGS="$CFLAGS -D_ALL_SOURCE" ;;
+*hpux*)		CFLAGS="$CFLAGS -D_HPUX_SOURCE" ;;
+*osf*)		CFLAGS="$CFLAGS -D_SOCKADDR_LEN" ;;
+*solaris*)	if test "$ac_cv_c_compiler_gnu" = yes; then
+		   CFLAGS="$CFLAGS -D__EXTENSIONS__"
+		else
+		   CFLAGS="$CFLAGS -D__STDC__"
+		fi
+		
+$as_echo "@%:@define POSIX_IPC_PREFIX \"/\"" >>confdefs.h
+
+		;;
+*linux*)
+		
+$as_echo "@%:@define POSIX_IPC_PREFIX \"/\"" >>confdefs.h
+
+		;;
+esac
+
+ac_config_files="$ac_config_files Makefile src/ipcs/core/Makefile src/svipc/Makefile src/svmsg/Makefile src/lib/Makefile"
 
 cat >confcache <<\_ACEOF
 # This file is a shell script that caches the results of configure
@@ -5079,6 +5099,8 @@ do
     "depfiles") CONFIG_COMMANDS="$CONFIG_COMMANDS depfiles" ;;
     "Makefile") CONFIG_FILES="$CONFIG_FILES Makefile" ;;
     "src/ipcs/core/Makefile") CONFIG_FILES="$CONFIG_FILES src/ipcs/core/Makefile" ;;
+    "src/svipc/Makefile") CONFIG_FILES="$CONFIG_FILES src/svipc/Makefile" ;;
+    "src/svmsg/Makefile") CONFIG_FILES="$CONFIG_FILES src/svmsg/Makefile" ;;
     "src/lib/Makefile") CONFIG_FILES="$CONFIG_FILES src/lib/Makefile" ;;
 
   *) as_fn_error $? "invalid argument: \`$ac_config_target'" "$LINENO" 5;;

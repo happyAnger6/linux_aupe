@@ -1,0 +1,3 @@
+---- HAVE_MQUEUE_H Matches (2 in 2 files) ----
+Config.h:#define HAVE_MQUEUE_H 1
+Unpipc.h (src\include):#ifdef HAVE_MQUEUE_H

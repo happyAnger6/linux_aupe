@@ -33,6 +33,27 @@ AC_PROG_RANLIB
 
 #AC_CONFIG_FILES([src/ipcs/core/Makefile
 #                 src/lib/Makefile])
+dnl Some system-specific stuff ...
+dnl Some operating systems require additional flags in order to get all
+dnl the definitions that we're looking for in some system headers.
+case "$host_os" in
+*aix*)		CFLAGS="$CFLAGS -D_ALL_SOURCE" ;;
+*hpux*)		CFLAGS="$CFLAGS -D_HPUX_SOURCE" ;;
+*osf*)		CFLAGS="$CFLAGS -D_SOCKADDR_LEN" ;;
+*solaris*)	if test "$ac_cv_prog_gcc" = yes; then
+		   CFLAGS="$CFLAGS -D__EXTENSIONS__"
+		else
+		   CFLAGS="$CFLAGS -D__STDC__"
+		fi
+		AC_DEFINE([POSIX_IPC_PREFIX], "/", [Define it to "/" if you are in posix])
+		;;
+*linux*)
+		AC_DEFINE([POSIX_IPC_PREFIX], "/", [Define it to "/" if you are in posix])
+		;;
+esac
+
 AC_OUTPUT([Makefile
 	src/ipcs/core/Makefile
+	src/svipc/Makefile
+	src/svmsg/Makefile
         src/lib/Makefile])

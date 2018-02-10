@@ -103,7 +103,7 @@ CONFIG_CLEAN_VPATH_FILES =
 PROGRAMS = $(noinst_PROGRAMS)
 am_test_OBJECTS = test.$(OBJEXT)
 test_OBJECTS = $(am_test_OBJECTS)
-test_DEPENDENCIES = $(top_srcdir)/src/lib/libswap.a
+test_DEPENDENCIES = $(top_srcdir)/src/lib/libunpipc.a
 test_LINK = $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(test_LDFLAGS) $(LDFLAGS) \
 	-o $@
 AM_V_P = $(am__v_P_$(V))
@@ -264,7 +264,7 @@ top_build_prefix = ../../../
 top_builddir = ../../..
 top_srcdir = ../../..
 test_SOURCES = test.c
-test_LDADD = $(top_srcdir)/src/lib/libswap.a
+test_LDADD = $(top_srcdir)/src/lib/libunpipc.a
 test_LDFLAGS = -D_GNU_SOURCE
 all: all-am
 

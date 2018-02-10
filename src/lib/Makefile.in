@@ -106,10 +106,11 @@ AM_V_AR = $(am__v_AR_@AM_V@)
 am__v_AR_ = $(am__v_AR_@AM_DEFAULT_V@)
 am__v_AR_0 = @echo "  AR      " $@;
 am__v_AR_1 = 
-libswap_a_AR = $(AR) $(ARFLAGS)
-libswap_a_LIBADD =
-am_libswap_a_OBJECTS = swap.$(OBJEXT)
-libswap_a_OBJECTS = $(am_libswap_a_OBJECTS)
+libunpipc_a_AR = $(AR) $(ARFLAGS)
+libunpipc_a_LIBADD =
+am_libunpipc_a_OBJECTS = px_ipc_name.$(OBJEXT) error.$(OBJEXT) \
+	wrapunix.$(OBJEXT)
+libunpipc_a_OBJECTS = $(am_libunpipc_a_OBJECTS)
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
 am__v_P_0 = false
@@ -138,8 +139,8 @@ AM_V_CCLD = $(am__v_CCLD_@AM_V@)
 am__v_CCLD_ = $(am__v_CCLD_@AM_DEFAULT_V@)
 am__v_CCLD_0 = @echo "  CCLD    " $@;
 am__v_CCLD_1 = 
-SOURCES = $(libswap_a_SOURCES)
-DIST_SOURCES = $(libswap_a_SOURCES)
+SOURCES = $(libunpipc_a_SOURCES)
+DIST_SOURCES = $(libunpipc_a_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -267,8 +268,8 @@ target_vendor = @target_vendor@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-noinst_LIBRARIES = libswap.a
-libswap_a_SOURCES = swap.c
+noinst_LIBRARIES = libunpipc.a
+libunpipc_a_SOURCES = px_ipc_name.c error.c wrapunix.c
 INCLUDES = -I$(top_srcdir)/src/include
 all: all-am
 
@@ -307,10 +308,10 @@ $(am__aclocal_m4_deps):
 clean-noinstLIBRARIES:
 	-test -z "$(noinst_LIBRARIES)" || rm -f $(noinst_LIBRARIES)
 
-libswap.a: $(libswap_a_OBJECTS) $(libswap_a_DEPENDENCIES) $(EXTRA_libswap_a_DEPENDENCIES) 
-	$(AM_V_at)-rm -f libswap.a
-	$(AM_V_AR)$(libswap_a_AR) libswap.a $(libswap_a_OBJECTS) $(libswap_a_LIBADD)
-	$(AM_V_at)$(RANLIB) libswap.a
+libunpipc.a: $(libunpipc_a_OBJECTS) $(libunpipc_a_DEPENDENCIES) $(EXTRA_libunpipc_a_DEPENDENCIES) 
+	$(AM_V_at)-rm -f libunpipc.a
+	$(AM_V_AR)$(libunpipc_a_AR) libunpipc.a $(libunpipc_a_OBJECTS) $(libunpipc_a_LIBADD)
+	$(AM_V_at)$(RANLIB) libunpipc.a
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -318,7 +319,9 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/swap.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/error.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/px_ipc_name.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wrapunix.Po@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<

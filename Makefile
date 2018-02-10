@@ -304,7 +304,7 @@ target_vendor = pc
 top_build_prefix = 
 top_builddir = .
 top_srcdir = .
-SUBDIRS = src/lib src/ipcs/core 
+SUBDIRS = src/lib src/ipcs/core src/svipc src/svmsg
 CURRENTPATH = $(shell /bin/pwd)
 INCLUDES = -I$(CURRENTPATH)/src/include -I$(CURRENTPATH)/src/core/include 
 all: config.h
