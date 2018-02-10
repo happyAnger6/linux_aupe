@@ -9,3 +9,7 @@ linux_aupe.PRI
 linux_aupe.PS
 config.log
 ./autom4te.cache
+*.a
+*.o
+*.log
+autom4te.cache/*
