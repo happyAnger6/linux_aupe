@@ -38,6 +38,13 @@ void Msgsnd(int, const void *, size_t, int);
 ssize_t Msgrcv(int, void *, size_t, int, int);
 #endif  /* HAVE_SYS_MSG_H */
 
+
+#ifdef  __bsdi__
+#define va_mode_t   int
+#else
+#define va_mode_t   mode_t
+#endif
+
 extern char *px_ipc_name(const char *);
 
 void err_dump(const char *, ...);

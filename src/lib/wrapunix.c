@@ -80,6 +80,34 @@ Write(int fd, void *ptr, size_t nbytes)
         err_sys("write error");
 }
 
+int
+Open(const char *pathname, int oflag, ...)
+{
+    int     fd;
+    va_list ap;
+    mode_t  mode;
+
+    if (oflag & O_CREAT) {
+        va_start(ap, oflag);        /* init ap to final named argument */
+        mode = va_arg(ap, va_mode_t);
+        if ( (fd = open(pathname, oflag, mode)) == -1)
+            err_sys("open error for %s", pathname);
+        va_end(ap);
+    } else {
+        if ( (fd = open(pathname, oflag)) == -1)
+            err_sys("open error for %s", pathname);
+    }
+    return(fd);
+}
+
+void
+Unlink(const char *pathname)
+{
+    if (unlink(pathname) == -1)
+        err_sys("unlink error for %s", pathname);
+}
+
+
 
 #ifdef  HAVE_SYS_IPC_H
 key_t
