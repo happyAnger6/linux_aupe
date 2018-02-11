@@ -8,3 +8,8 @@ noinst_PROGRAMS=fduplex
 fduplex_SOURCES=fduplex.c
 fduplex_LDADD=$(top_srcdir)/src/lib/libunpipc.a
 fduplex_LDFLAGS=-D_GNU_SOURCE
+
+noinst_PROGRAMS=fduplex
+fduplex_SOURCES=fduplex.c
+fduplex_LDADD=$(top_srcdir)/src/lib/libunpipc.a
+fduplex_LDFLAGS=-D_GNU_SOURCE
