@@ -9,3 +9,8 @@ testumask_SOURCES=testumask.c
 testumask_LDADD=$(top_srcdir)/src/lib/libunpipc.a
 testumask_LDFLAGS=-D_GNU_SOURCE
 
+noinst_PROGRAMS=slotseq
+slotseq_SOURCES=slotseq.c
+slotseq_LDADD=$(top_srcdir)/src/lib/libunpipc.a
+slotseq_LDFLAGS=-D_GNU_SOURCE
+

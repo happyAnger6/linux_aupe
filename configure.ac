@@ -56,4 +56,5 @@ AC_OUTPUT([Makefile
 	src/ipcs/core/Makefile
 	src/svipc/Makefile
 	src/svmsg/Makefile
+	src/pipe/Makefile
         src/lib/Makefile])
