@@ -13,3 +13,4 @@ config.log
 *.o
 *.log
 autom4te.cache/*
+linux_aupe.WK3
