@@ -1,4 +1,4 @@
-px_ipc_name.o: px_ipc_name.c /usr/include/stdc-predef.h \
+wrapstdio.o: wrapstdio.c /usr/include/stdc-predef.h \
  ../../src/include/unpipc.h ../../config.h /usr/include/sys/types.h \
  /usr/include/features.h /usr/include/sys/cdefs.h \
  /usr/include/bits/wordsize.h /usr/include/gnu/stubs.h \
