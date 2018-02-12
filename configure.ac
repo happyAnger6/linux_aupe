@@ -30,7 +30,7 @@ AC_PROG_RANLIB
 # Checks for typedefs, structures, and compiler characteristics.
 
 # Checks for library functions.
-
+AC_PROG_LIBTOOL
 #AC_CONFIG_FILES([src/ipcs/core/Makefile
 #                 src/lib/Makefile])
 dnl Some system-specific stuff ...
@@ -57,4 +57,6 @@ AC_OUTPUT([Makefile
 	src/svipc/Makefile
 	src/svmsg/Makefile
 	src/pipe/Makefile
+	src/pipemsg/Makefile
+	src/pxmsg/Makefile
         src/lib/Makefile])
