@@ -79,7 +79,9 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 target_triplet = @target@
-noinst_PROGRAMS = mqcreate$(EXEEXT)
+noinst_PROGRAMS = mqcreate1$(EXEEXT) mqcreate$(EXEEXT) \
+	mqunlink$(EXEEXT) msgrecv$(EXEEXT) msgsend$(EXEEXT) \
+	mqgetattr$(EXEEXT) mqsysconf$(EXEEXT)
 subdir = src/pxmsg
 DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/Makefile.am \
 	$(top_srcdir)/depcomp
@@ -102,6 +104,42 @@ am__v_lt_1 =
 mqcreate_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
 	$(mqcreate_LDFLAGS) $(LDFLAGS) -o $@
+am_mqcreate1_OBJECTS = mqcreate1.$(OBJEXT)
+mqcreate1_OBJECTS = $(am_mqcreate1_OBJECTS)
+mqcreate1_DEPENDENCIES = $(top_srcdir)/src/lib/libunpipc.la
+mqcreate1_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
+	$(mqcreate1_LDFLAGS) $(LDFLAGS) -o $@
+am_mqgetattr_OBJECTS = mqgetattr.$(OBJEXT)
+mqgetattr_OBJECTS = $(am_mqgetattr_OBJECTS)
+mqgetattr_DEPENDENCIES = $(top_srcdir)/src/lib/libunpipc.la
+mqgetattr_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
+	$(mqgetattr_LDFLAGS) $(LDFLAGS) -o $@
+am_mqsysconf_OBJECTS = mqsysconf.$(OBJEXT)
+mqsysconf_OBJECTS = $(am_mqsysconf_OBJECTS)
+mqsysconf_DEPENDENCIES = $(top_srcdir)/src/lib/libunpipc.la
+mqsysconf_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
+	$(mqsysconf_LDFLAGS) $(LDFLAGS) -o $@
+am_mqunlink_OBJECTS = mqunlink.$(OBJEXT)
+mqunlink_OBJECTS = $(am_mqunlink_OBJECTS)
+mqunlink_DEPENDENCIES = $(top_srcdir)/src/lib/libunpipc.la
+mqunlink_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
+	$(mqunlink_LDFLAGS) $(LDFLAGS) -o $@
+am_msgrecv_OBJECTS = msgrecv.$(OBJEXT)
+msgrecv_OBJECTS = $(am_msgrecv_OBJECTS)
+msgrecv_DEPENDENCIES = $(top_srcdir)/src/lib/libunpipc.la
+msgrecv_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
+	$(msgrecv_LDFLAGS) $(LDFLAGS) -o $@
+am_msgsend_OBJECTS = msgsend.$(OBJEXT)
+msgsend_OBJECTS = $(am_msgsend_OBJECTS)
+msgsend_DEPENDENCIES = $(top_srcdir)/src/lib/libunpipc.la
+msgsend_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
+	$(msgsend_LDFLAGS) $(LDFLAGS) -o $@
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
 am__v_P_0 = false
@@ -136,8 +174,12 @@ AM_V_CCLD = $(am__v_CCLD_@AM_V@)
 am__v_CCLD_ = $(am__v_CCLD_@AM_DEFAULT_V@)
 am__v_CCLD_0 = @echo "  CCLD    " $@;
 am__v_CCLD_1 = 
-SOURCES = $(mqcreate_SOURCES)
-DIST_SOURCES = $(mqcreate_SOURCES)
+SOURCES = $(mqcreate_SOURCES) $(mqcreate1_SOURCES) \
+	$(mqgetattr_SOURCES) $(mqsysconf_SOURCES) $(mqunlink_SOURCES) \
+	$(msgrecv_SOURCES) $(msgsend_SOURCES)
+DIST_SOURCES = $(mqcreate_SOURCES) $(mqcreate1_SOURCES) \
+	$(mqgetattr_SOURCES) $(mqsysconf_SOURCES) $(mqunlink_SOURCES) \
+	$(msgrecv_SOURCES) $(msgsend_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -293,6 +335,15 @@ mqgetattr_LDFLAGS = -D_GNU_SOURCE
 mqcreate_SOURCES = mqcreate.c
 mqcreate_LDADD = $(top_srcdir)/src/lib/libunpipc.la
 mqcreate_LDFLAGS = -D_GNU_SOURCE
+msgrecv_SOURCES = msgrecv.c
+msgrecv_LDADD = $(top_srcdir)/src/lib/libunpipc.la
+msgrecv_LDFLAGS = -D_GNU_SOURCE
+msgsend_SOURCES = msgsend.c
+msgsend_LDADD = $(top_srcdir)/src/lib/libunpipc.la
+msgsend_LDFLAGS = -D_GNU_SOURCE
+mqsysconf_SOURCES = mqsysconf.c
+mqsysconf_LDADD = $(top_srcdir)/src/lib/libunpipc.la
+mqsysconf_LDFLAGS = -D_GNU_SOURCE
 all: all-am
 
 .SUFFIXES:
@@ -341,6 +392,30 @@ mqcreate$(EXEEXT): $(mqcreate_OBJECTS) $(mqcreate_DEPENDENCIES) $(EXTRA_mqcreate
 	@rm -f mqcreate$(EXEEXT)
 	$(AM_V_CCLD)$(mqcreate_LINK) $(mqcreate_OBJECTS) $(mqcreate_LDADD) $(LIBS)
 
+mqcreate1$(EXEEXT): $(mqcreate1_OBJECTS) $(mqcreate1_DEPENDENCIES) $(EXTRA_mqcreate1_DEPENDENCIES) 
+	@rm -f mqcreate1$(EXEEXT)
+	$(AM_V_CCLD)$(mqcreate1_LINK) $(mqcreate1_OBJECTS) $(mqcreate1_LDADD) $(LIBS)
+
+mqgetattr$(EXEEXT): $(mqgetattr_OBJECTS) $(mqgetattr_DEPENDENCIES) $(EXTRA_mqgetattr_DEPENDENCIES) 
+	@rm -f mqgetattr$(EXEEXT)
+	$(AM_V_CCLD)$(mqgetattr_LINK) $(mqgetattr_OBJECTS) $(mqgetattr_LDADD) $(LIBS)
+
+mqsysconf$(EXEEXT): $(mqsysconf_OBJECTS) $(mqsysconf_DEPENDENCIES) $(EXTRA_mqsysconf_DEPENDENCIES) 
+	@rm -f mqsysconf$(EXEEXT)
+	$(AM_V_CCLD)$(mqsysconf_LINK) $(mqsysconf_OBJECTS) $(mqsysconf_LDADD) $(LIBS)
+
+mqunlink$(EXEEXT): $(mqunlink_OBJECTS) $(mqunlink_DEPENDENCIES) $(EXTRA_mqunlink_DEPENDENCIES) 
+	@rm -f mqunlink$(EXEEXT)
+	$(AM_V_CCLD)$(mqunlink_LINK) $(mqunlink_OBJECTS) $(mqunlink_LDADD) $(LIBS)
+
+msgrecv$(EXEEXT): $(msgrecv_OBJECTS) $(msgrecv_DEPENDENCIES) $(EXTRA_msgrecv_DEPENDENCIES) 
+	@rm -f msgrecv$(EXEEXT)
+	$(AM_V_CCLD)$(msgrecv_LINK) $(msgrecv_OBJECTS) $(msgrecv_LDADD) $(LIBS)
+
+msgsend$(EXEEXT): $(msgsend_OBJECTS) $(msgsend_DEPENDENCIES) $(EXTRA_msgsend_DEPENDENCIES) 
+	@rm -f msgsend$(EXEEXT)
+	$(AM_V_CCLD)$(msgsend_LINK) $(msgsend_OBJECTS) $(msgsend_LDADD) $(LIBS)
+
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
 
@@ -348,6 +423,12 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/mqcreate.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/mqcreate1.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/mqgetattr.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/mqsysconf.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/mqunlink.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/msgrecv.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/msgsend.Po@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<

@@ -1,4 +1,4 @@
-mqcreate1.o: mqcreate1.c /usr/include/stdc-predef.h \
+mqsysconf.o: mqsysconf.c /usr/include/stdc-predef.h \
  /home/zhangxa/sources/linux_aupe/src/include/unpipc.h ../../config.h \
  /usr/include/sys/types.h /usr/include/features.h \
  /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h \

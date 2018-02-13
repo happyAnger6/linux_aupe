@@ -154,6 +154,25 @@ Getopt(int argc, char *const *argv, const char *str)
     return(opt);
 }
 
+void *
+Calloc(size_t n, size_t size)
+{
+    void    *ptr;
+
+    if ( (ptr = calloc(n, size)) == NULL)
+        err_sys("calloc error");
+    return(ptr);
+}
+
+void *
+Malloc(size_t size)
+{
+    void    *ptr;
+
+    if ( (ptr = malloc(size)) == NULL)
+        err_sys("malloc error");
+    return(ptr);
+}
 
 #ifdef  HAVE_SYS_IPC_H
 key_t
