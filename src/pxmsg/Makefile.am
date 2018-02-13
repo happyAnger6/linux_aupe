@@ -9,3 +9,12 @@ mqunlink_SOURCES=mqunlink.c
 mqunlink_LDADD=$(top_srcdir)/src/lib/libunpipc.la
 mqunlink_LDFLAGS=-D_GNU_SOURCE
 
+noinst_PROGRAMS=mqgetattr
+mqgetattr_SOURCES=mqgetattr.c
+mqgetattr_LDADD=$(top_srcdir)/src/lib/libunpipc.la
+mqgetattr_LDFLAGS=-D_GNU_SOURCE
+
+noinst_PROGRAMS=mqcreate
+mqcreate_SOURCES=mqcreate.c
+mqcreate_LDADD=$(top_srcdir)/src/lib/libunpipc.la
+mqcreate_LDFLAGS=-D_GNU_SOURCE
