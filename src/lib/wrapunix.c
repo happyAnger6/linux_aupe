@@ -174,6 +174,24 @@ Malloc(size_t size)
     return(ptr);
 }
 
+/* include Select */
+int
+Select(int nfds, fd_set *readfds, fd_set *writefds, fd_set *exceptfds,
+       struct timeval *timeout)
+{
+	int		n;
+
+again:
+	if ( (n = select(nfds, readfds, writefds, exceptfds, timeout)) < 0) {
+		if (errno == EINTR)
+			goto again;
+		else
+			err_sys("select error");
+	} else if (n == 0 && timeout == NULL)
+		err_quit("select returned 0 with no timeout");
+	return(n);		/* can return 0 on timeout */
+}
+
 #ifdef  HAVE_SYS_IPC_H
 key_t
 Ftok(const char *pathname, int id)
@@ -301,3 +319,76 @@ Mq_setattr(mqd_t mqd, const struct mq_attr *mqstat, struct mq_attr *omqstat)
 }
 #endif  /* HAVE_SYS_MSG_H */
 
+void
+Sigaddset(sigset_t *set, int signo)
+{
+	if (sigaddset(set, signo) == -1)
+		err_sys("sigaddset error");
+}
+
+void
+Sigdelset(sigset_t *set, int signo)
+{
+	if (sigdelset(set, signo) == -1)
+		err_sys("sigdelset error");
+}
+
+void
+Sigemptyset(sigset_t *set)
+{
+	if (sigemptyset(set) == -1)
+		err_sys("sigemptyset error");
+}
+
+void
+Sigfillset(sigset_t *set)
+{
+	if (sigfillset(set) == -1)
+		err_sys("sigfillset error");
+}
+
+int
+Sigismember(const sigset_t *set, int signo)
+{
+	int		n;
+
+	if ( (n = sigismember(set, signo)) == -1)
+		err_sys("sigismember error");
+	return(n);
+}
+
+void
+Sigpending(sigset_t *set)
+{
+	if (sigpending(set) == -1)
+		err_sys("sigpending error");
+}
+
+void
+Sigprocmask(int how, const sigset_t *set, sigset_t *oset)
+{
+	if (sigprocmask(how, set, oset) == -1)
+		err_sys("sigprocmask error");
+}
+
+#ifdef	HAVE_SIGWAIT
+void
+Sigwait(const sigset_t *set, int *signo)
+{
+	int		n;
+
+	if ( (n = sigwait(set, signo)) == 0)
+		return;
+	errno = n;
+	err_sys("sigwait error");
+}
+#endif
+
+#ifdef	HAVE_SIGINFO_T_STRUCT
+void
+Sigqueue(pid_t pid, int signo, const union sigval val)
+{
+	if (sigqueue(pid, signo, val) == -1)
+		err_sys("sigqueue error");
+}
+#endif

@@ -25,7 +25,15 @@ AC_PROG_CC
 # Checks for header files.
 AC_CHECK_HEADERS([stdlib.h])
 AC_CHECK_HEADERS(sys/types.h sys/time.h time.h errno.h fcntl.h limits.h signal.h stdio.h stdlib.h string.h sys/stat.h unistd.h sys/wait.h sys/ipc.h sys/msg.h sys/sem.h sys/shm.h mqueue.h semaphore.h sys/mman.h sys/select.h poll.h stropts.h strings.h sys/ioctl.h sys/filio.h pthread.h door.h rpc/rpc.h sys/sysctl.h)
-
+AC_FUNC_MALLOC
+AC_CHECK_FUNCS([sigwait])
+AC_CACHE_CHECK(for siginfo_t{}, ac_cv_have_siginfo_t_struct,
+	AC_EGREP_HEADER(siginfo_t, signal.h,
+		ac_cv_have_siginfo_t_struct=yes,
+		ac_cv_have_siginfo_t_struct=no))
+if test $ac_cv_have_siginfo_t_struct = yes ; then
+	AC_DEFINE([HAVE_SIGINFO_T_STRUCT],1,["siginfo_t struct 1"])
+fi
 AC_PROG_RANLIB
 # Checks for typedefs, structures, and compiler characteristics.
 
@@ -59,4 +67,5 @@ AC_OUTPUT([Makefile
 	src/pipe/Makefile
 	src/pipemsg/Makefile
 	src/pxmsg/Makefile
+	src/rtsignals/Makefile
         src/lib/Makefile])

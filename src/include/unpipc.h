@@ -93,4 +93,12 @@ void err_sys(const char *, ...);
 
 #endif
 
+#ifdef	HAVE_SIGINFO_T_STRUCT
+typedef	void	Sigfunc_rt(int, siginfo_t *, void *);
+#endif
+
+typedef	void	Sigfunc(int);	/* for signal handlers */
+
 void     Mkfifo(const char *, mode_t);
+void*     Malloc(size_t size);
+typedef	void	Sigfunc(int);	/* for signal handlers */
