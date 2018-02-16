@@ -68,7 +68,9 @@ slotseq.o: slotseq.c /usr/include/stdc-predef.h \
  /usr/include/x86_64-linux-gnu/bits/ipctypes.h \
  /usr/include/x86_64-linux-gnu/bits/ipc.h \
  /usr/include/x86_64-linux-gnu/sys/msg.h \
- /usr/include/x86_64-linux-gnu/bits/msq.h
+ /usr/include/x86_64-linux-gnu/bits/msq.h /usr/include/pthread.h \
+ /usr/include/sched.h /usr/include/x86_64-linux-gnu/bits/sched.h \
+ /usr/include/x86_64-linux-gnu/bits/setjmp.h
 
 /usr/include/stdc-predef.h:
 
@@ -251,3 +253,11 @@ slotseq.o: slotseq.c /usr/include/stdc-predef.h \
 /usr/include/x86_64-linux-gnu/sys/msg.h:
 
 /usr/include/x86_64-linux-gnu/bits/msq.h:
+
+/usr/include/pthread.h:
+
+/usr/include/sched.h:
+
+/usr/include/x86_64-linux-gnu/bits/sched.h:
+
+/usr/include/x86_64-linux-gnu/bits/setjmp.h:

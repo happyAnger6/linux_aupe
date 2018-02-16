@@ -12256,7 +12256,7 @@ $as_echo "@%:@define POSIX_IPC_PREFIX \"/\"" >>confdefs.h
 		;;
 esac
 
-ac_config_files="$ac_config_files Makefile src/ipcs/core/Makefile src/svipc/Makefile src/svmsg/Makefile src/pipe/Makefile src/pipemsg/Makefile src/pxmsg/Makefile src/rtsignals/Makefile src/lib/Makefile"
+ac_config_files="$ac_config_files Makefile src/ipcs/core/Makefile src/svipc/Makefile src/svmsg/Makefile src/pipe/Makefile src/pipemsg/Makefile src/pxmsg/Makefile src/rtsignals/Makefile src/mutex/Makefile src/lib/Makefile"
 
 cat >confcache <<\_ACEOF
 # This file is a shell script that caches the results of configure
@@ -13277,6 +13277,7 @@ do
     "src/pipemsg/Makefile") CONFIG_FILES="$CONFIG_FILES src/pipemsg/Makefile" ;;
     "src/pxmsg/Makefile") CONFIG_FILES="$CONFIG_FILES src/pxmsg/Makefile" ;;
     "src/rtsignals/Makefile") CONFIG_FILES="$CONFIG_FILES src/rtsignals/Makefile" ;;
+    "src/mutex/Makefile") CONFIG_FILES="$CONFIG_FILES src/mutex/Makefile" ;;
     "src/lib/Makefile") CONFIG_FILES="$CONFIG_FILES src/lib/Makefile" ;;
 
   *) as_fn_error $? "invalid argument: \`$ac_config_target'" "$LINENO" 5;;

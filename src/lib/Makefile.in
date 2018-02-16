@@ -102,7 +102,8 @@ CONFIG_CLEAN_VPATH_FILES =
 LTLIBRARIES = $(noinst_LTLIBRARIES)
 libunpipc_la_LIBADD =
 am_libunpipc_la_OBJECTS = px_ipc_name.lo error.lo wrapunix.lo \
-	wrapstdio.lo spipe.lo set_noblock.lo signal.lo signal_rt.lo
+	wrapstdio.lo spipe.lo set_noblock.lo signal.lo signal_rt.lo \
+	set_concurrency.lo wrapthread.lo
 libunpipc_la_OBJECTS = $(am_libunpipc_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
@@ -294,8 +295,8 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 noinst_LTLIBRARIES = libunpipc.la
-libunpipc_la_SOURCES = px_ipc_name.c error.c wrapunix.c wrapstdio.c spipe.c set_noblock.c signal.c signal_rt.c
-libunpipc_la_LDFLAGS = -lrt
+libunpipc_la_SOURCES = px_ipc_name.c error.c wrapunix.c wrapstdio.c spipe.c set_noblock.c signal.c signal_rt.c set_concurrency.c wrapthread.c
+libunpipc_la_LDFLAGS = -lrt -lpthread
 INCLUDES = -I$(top_srcdir)/src/include
 all: all-am
 
@@ -353,11 +354,13 @@ distclean-compile:
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/error.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/px_ipc_name.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/set_concurrency.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/set_noblock.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/signal.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/signal_rt.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/spipe.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wrapstdio.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wrapthread.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wrapunix.Plo@am__quote@
 
 .c.o:

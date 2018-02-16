@@ -68,4 +68,5 @@ AC_OUTPUT([Makefile
 	src/pipemsg/Makefile
 	src/pxmsg/Makefile
 	src/rtsignals/Makefile
+	src/mutex/Makefile
         src/lib/Makefile])

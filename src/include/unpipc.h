@@ -30,6 +30,10 @@
 #include <sys/msg.h>     /* System V message queues */
 #endif
 
+#ifdef	HAVE_PTHREAD_H
+# include	<pthread.h>
+#endif
+
 #ifdef  HAVE_SYS_MSG_H
             /* 4System V message queues */
 int Msgget(key_t key, int flag);
@@ -90,6 +94,9 @@ void err_sys(const char *, ...);
 #define SVSHM_MODE  (SHM_R | SHM_W | SHM_R>>3 | SHM_R>>6)
                     /* default permissions for new SV shared memory */
 /* $$.ix [SVSHM_MODE]~constant,~definition~of$$ */
+
+#define	min(a,b)	((a) < (b) ? (a) : (b))
+#define	max(a,b)	((a) > (b) ? (a) : (b))
 
 #endif
 
