@@ -2,3 +2,5 @@
 .deps/
 .lo/
 .la/
+linux_aupe@*
+linux_aupe.*
